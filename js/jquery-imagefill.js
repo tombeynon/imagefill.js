@@ -60,9 +60,10 @@
         var containerW = $(this).width();
         var containerH = $(this).height();
         var containerAspect = containerW/containerH;
+        var images = $(this).find('img');
         if (containerAspect < imageAspect) {
           // taller
-          $(this).find('img').css({
+          images.css({
               width: 'auto',
               height: containerH,
               top:0,
@@ -70,13 +71,14 @@
             });
         } else {
           // wider
-          $(this).find('img').css({
+          images.css({
               width: containerW,
               height: 'auto',
               top:-(containerW/imageAspect-containerH)/2,
               left:0
             });
         }
+        $container.trigger("imagefill.resized", [images]);
       });
     }
 
